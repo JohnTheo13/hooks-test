@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import { onChangeReducer, CHANGE, initial } from '../UseReducerComponent';
+import { onChangeReducer, CHANGE, initial } from '../shared';
 
 const ADD = 'ADD';
 const REMOVE = 'REMOVE';
@@ -26,7 +26,6 @@ initial.list = [];
 
 const ComposedComponent = () => {
   const [{ value, list }, dispatch] = useReducer(reducerHandler, initial);
-console.log(list)
   return (
     <div>
       <div>Input: {value}</div>
