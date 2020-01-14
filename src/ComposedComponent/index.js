@@ -1,5 +1,7 @@
 import React, { useReducer } from 'react';
 import { onChangeReducer, CHANGE, initial } from '../shared';
+import * as test from './Tester';
+import SwitchTest from './TestSwitch';
 
 const ADD = 'ADD';
 const REMOVE = 'REMOVE';
@@ -26,13 +28,14 @@ initial.list = [];
 
 const ComposedComponent = () => {
   const [{ value, list }, dispatch] = useReducer(reducerHandler, initial);
+  const Test = test[list[0]];
   return (
     <div>
       <div>Input: {value}</div>
       <input value={value} onChange={({target: {value}}) => dispatch({type: CHANGE, payload: value})} />
       <button type="button" onClick={() => dispatch({ type: ADD, payload: value })}>+</button>
       <button type="button" onClick={() => dispatch({ type: REMOVE })}>-</button>
-      <div>{list.map(el => <div key={el}>{el}</div>)}</div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>{!!Test && <SwitchTest at={list[0]} />}{!!Test && <Test />}</div>
     </div>
   );
 };
